@@ -280,6 +280,8 @@ class NosyProject:
     else:
       self.builder = NoseBuilder()
 
+    self.builder.import_config(cp)
+
     level = LEVELS.get(cp.get('nosy', 'logging'), logging.NOTSET)
     logging.basicConfig(level=level)
 
@@ -476,6 +478,9 @@ class Builder:
   def __init__(self):
     self.logger = None
 
+  def import_config(self, cp):
+    pass
+
   def run(self, command):
     import subprocess
     try:
@@ -497,11 +502,18 @@ class TrialBuilder:
     return self.run('trial'), None
 
 class NoseBuilder(Builder):
+
+  def import_config(self, cp):
+    try:
+      self.nose_options = cp.get('nose', 'options')
+    except:
+      self.nose_options = ''
+
   def get_default_monitored_paths(self):
     return "*.py **/*.py"
 
   def build(self):
-    res = self.run('nosetests --with-xunit')
+    res = self.run('nosetests --with-xunit ' + self.nose_options)
     test_results = parse_xunit_results('nosetests.xml')
     return res, test_results
 

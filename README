@@ -72,6 +72,9 @@ Default values for the various configuration files:
     #logging=warning (for the project and associated builder and notifier)
     #check_period    (when ran standalone, i.e. with --local)
 
+    [nose]           (when using the nose builder)
+    options=--with-gae -e 'dirtoexclude'     (any options you'd pass on the command line)
+
 
 ----
 Help
