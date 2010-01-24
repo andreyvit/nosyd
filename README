@@ -76,6 +76,19 @@ Default values for the various configuration files:
     options=--with-gae -e 'dirtoexclude'     (any options you'd pass on the command line)
 
 
+-------------
+Notifications
+-------------
+
+To get Growl notifications on OS X, please download Growl SDK from [3]. Click the DMG file to mount it, then:
+
+    $ cp -r '/Volumes/Growl 1.2 SDK/Bindings/python/' /tmp/py-Growl
+    $ cd /tmp/py-Growl/
+    $ sudo python setup.py install
+    
+(you may have to change the volume name if your SDK version is not 1.2).
+
+
 ----
 Help
 ----
@@ -105,3 +118,4 @@ Links
 
 [1] http://jeffwinkler.net/2006/04/27/keeping-your-nose-green/
 [2] http://douglatornell.ca/software/python/Nosy-1.0.tar.gz
+[3] http://growl.info/downloads_developers.php
